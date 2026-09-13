@@ -1,0 +1,186 @@
+<main [class.is-entered]="entered">
+  <section class="cover" [class.cover--opening]="opening" [class.cover--hidden]="entered" aria-label="Save the date cover">
+    <div class="cover__paper"></div>
+    <button class="seal" type="button" (click)="enterInvitation()" aria-label="Open invitation">
+      <span>Save</span>
+      <small>the</small>
+      <span>Date</span>
+    </button>
+    <p class="cover__hint">Tap the seal to open</p>
+  </section>
+
+  <div id="invitation" class="invitation" [attr.aria-hidden]="!entered">
+    <section class="opening-names reveal" aria-labelledby="opening-names-title">
+      <div class="opening-names__falling-flowers" aria-hidden="true">
+        <span class="falling-flower falling-flower--one"></span>
+        <span class="falling-flower falling-flower--two"></span>
+        <span class="falling-flower falling-flower--three"></span>
+        <span class="falling-flower falling-flower--four"></span>
+        <span class="falling-flower falling-flower--five"></span>
+        <span class="falling-flower falling-flower--six"></span>
+        <span class="falling-flower falling-flower--seven"></span>
+        <span class="falling-flower falling-flower--eight"></span>
+        <span class="falling-flower falling-flower--nine"></span>
+        <span class="falling-flower falling-flower--ten"></span>
+        <span class="falling-petal falling-petal--one"></span>
+        <span class="falling-petal falling-petal--two"></span>
+        <span class="falling-petal falling-petal--three"></span>
+        <span class="falling-petal falling-petal--four"></span>
+        <span class="falling-petal falling-petal--five"></span>
+      </div>
+      <!-- <img class="opening-names__couple-art" src="./assets/bride-groom.svg" alt="Bride and groom illustration" /> -->
+      <div class="opening-names__petal opening-names__petal--one" aria-hidden="true"></div>
+      <div class="opening-names__petal opening-names__petal--two" aria-hidden="true"></div>
+      <div class="opening-names__centerpiece">
+          <div class="opening-names__wreath" aria-hidden="true">
+            <span class="opening-names__leaf opening-names__leaf--one"></span>
+            <span class="opening-names__leaf opening-names__leaf--two"></span>
+            <span class="opening-names__leaf opening-names__leaf--three"></span>
+            <span class="opening-names__leaf opening-names__leaf--four"></span>
+            <span class="opening-names__flower opening-names__flower--one">✦</span>
+            <span class="opening-names__flower opening-names__flower--two">✦</span>
+          </div>
+        <div class="opening-names__content">
+          <h1 id="opening-names-title"><span>{{ invitation.groom }}</span><b>&amp;</b><span>{{ invitation.bride }}</span></h1>
+        </div>
+      </div>
+      <img class="opening-names__bride-groom" src="./assets/Bride-Groom-transparent.png" alt="Bride and groom illustration" />
+    </section>
+    <section class="welcome section-light reveal">
+      <!-- <div class="ganesha">ॐ</div>
+      <p class="eyebrow">With the blessings of Shree Kachhuru Nageshwara</p> -->
+      <p class="story">“{{ invitation.story }}”</p>
+      <div class="petals" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    </section>
+
+    <!-- <section class="names section-light reveal">
+      <p class="eyebrow">Together with their families</p>
+      <h1>{{ invitation.groom }}</h1>
+      <div class="ampersand">&amp;</div>
+      <h1>{{ invitation.bride }}</h1>
+      <p class="names__copy">invite you to celebrate the beginning of their forever.</p>
+      <div class="rule"></div>
+      <p class="date-line">{{ invitation.date }} · {{ invitation.time }}</p>
+    </section> -->
+
+    <section class="scratch-section section-dark reveal">
+      <h2>Save the Date</h2>
+      <p class="section-subtitle">Scratch to reveal the details</p>
+      <div class="scroll-card">
+        <div class="scroll-roll scroll-roll--top"></div>
+        <div class="scroll-message" [class.scroll-message--revealed]="scratched">
+          <span class="month">November</span>
+          <strong>Sunday, 22</strong>
+          <span class="year">2026</span>
+          <span>{{ invitation.time }}</span>
+        </div>
+        <canvas #scratchCanvas class="scratch-layer" (pointermove)="$event.buttons && scratch($event)" (pointerdown)="scratch($event)" aria-label="Scratch card"></canvas>
+        <div class="scroll-roll scroll-roll--bottom"></div>
+      </div>
+      <p class="scratch-note">Use your finger across the card</p>
+    </section>
+
+    <section class="with-blessings reveal" aria-labelledby="with-blessings-heading">
+      <div class="with-blessings__card">
+        <p class="with-blessings__heading" id="with-blessings-heading">{{ withBlessings.heading }}</p>
+        <p class="with-blessings__message">{{ withBlessings.message }}</p>
+        <div class="with-blessings__families">
+          <article class="with-blessings__family">
+            <h2>{{ withBlessings.groom.name }}</h2>
+            <p class="with-blessings__relation">{{ withBlessings.groom.relation }}</p>
+            <p>{{ withBlessings.groom.parents }}</p>
+          </article>
+          <p class="with-blessings__connector">{{ withBlessings.connector }}</p>
+          <article class="with-blessings__family">
+            <h2>{{ withBlessings.bride.name }}</h2>
+            <p class="with-blessings__relation">{{ withBlessings.bride.relation }}</p>
+            <p>{{ withBlessings.bride.parents }}</p>
+          </article>
+        </div>
+        <div class="with-blessings__detail">
+          <p class="with-blessings__label">{{ withBlessings.dateLabel }}</p>
+          <p>{{ withBlessings.date }}</p>
+        </div>
+        <div class="with-blessings__detail">
+          <p class="with-blessings__label">{{ withBlessings.venueLabel }}</p>
+          <p>{{ withBlessings.venue }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="timeline section-light reveal">
+      <h2>Event Timeline</h2>
+      <div class="timeline__items">
+        <article><span class="timeline__dot"></span><div><h3>Muhurtham</h3><p>11:45 AM</p></div></article>
+        <article><span class="timeline__dot"></span><div><h3>Lunch</h3><p>12:30 PM</p></div></article>
+      </div>
+    </section>
+
+    <section class="venue section-light reveal">
+      <h2>Venue</h2>
+      <p class="venue__name">{{ invitation.venue }}</p>
+      <div class="map-card" aria-label="Illustrated map to the venue">
+        <span class="map-road map-road--one"></span><span class="map-road map-road--two"></span><span class="map-pin">♥</span>
+        <span class="map-label">Barkuru</span>
+      </div>
+      <button class="button" type="button" (click)="openMaps()">View on Google Maps ↗</button>
+    </section>
+
+    <section class="closing section-dark reveal">
+      <div class="closing__frame">
+        <!-- <p class="eyebrow eyebrow--soft">With love,</p>
+        <h2>Adithya <span>&amp;</span> Sameeksha</h2>
+        <p>We cannot wait to celebrate this beautiful day with you.</p> -->
+        <h2 class="countdown__title">Counting Down</h2>
+        <div class="countdown" aria-label="Time until the wedding">
+          <div><strong>{{ countdown.days }}</strong><span>Days</span></div>
+          <div><strong>{{ countdown.hours | number: '2.0-0' }}</strong><span>Hours</span></div>
+          <div><strong>{{ countdown.minutes | number: '2.0-0' }}</strong><span>Minutes</span></div>
+          <div><strong>{{ countdown.seconds | number: '2.0-0' }}</strong><span>Seconds</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="photo-frames section-light reveal" aria-label="Photos of the couple">
+      <div class="photo-frames__divider" aria-hidden="true"></div>
+      <div class="photo-frames__content">
+        <div class="hanging-photos" aria-label="Photos of the couple">
+          <figure class="hanging-photo hanging-photo--one">
+            <span class="hanging-photo__string"></span>
+            <span class="hanging-photo__clip"></span>
+            <img src="./assets/couple_1.png" alt="The couple together" />
+            <figcaption>Together</figcaption>
+          </figure>
+          <figure class="hanging-photo hanging-photo--two">
+            <span class="hanging-photo__string"></span>
+            <span class="hanging-photo__clip"></span>
+            <img src="./assets/couple_2.png" alt="The couple smiling together" />
+            <figcaption>Forever</figcaption>
+          </figure>
+          <figure class="hanging-photo hanging-photo--three">
+            <span class="hanging-photo__string"></span>
+            <span class="hanging-photo__clip"></span>
+            <img src="./assets/couple_3.png" alt="The couple outdoors" />
+            <figcaption>Always</figcaption>
+          </figure>
+          <figure class="hanging-photo hanging-photo--four">
+            <span class="hanging-photo__string"></span>
+            <span class="hanging-photo__clip"></span>
+            <img src="./assets/couple_4.png" alt="The couple celebrating" />
+            <figcaption>Blessed</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section class="best-wishes section-light reveal" aria-labelledby="best-wishes-title">
+      <div class="best-wishes__petal best-wishes__petal--one" aria-hidden="true"></div>
+      <div class="best-wishes__petal best-wishes__petal--two" aria-hidden="true"></div>
+      <div class="best-wishes__petal best-wishes__petal--three" aria-hidden="true"></div>
+      <div class="best-wishes__content">
+        <div class="best-wishes__ornament" aria-hidden="true">❧ ❧ ❧</div>
+        <p class="best-wishes__message">With hearts full of joy, we cordially invite you to grace<br class="best-wishes__break" /> our wedding celebrations and bless us as we begin our<br class="best-wishes__break" /> new chapter together.</p>
+        <h2 id="best-wishes-title">Best wishes from</h2>
+        <p class="best-wishes__from">FAMILY &amp; FRIENDS</p>
+      </div>
+    </section>
+  </div>
+</main>
