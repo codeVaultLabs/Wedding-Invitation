@@ -79,7 +79,7 @@ Two hearts, two journeys, and two beautifully different worlds came together at 
 
 ### Counting Down
 
-- Real-time countdown to November 22, 2026, updated every second.
+- Real-time countdown to November 22, 2026 at 11:45 AM, updated every second.
 - Clear the timer in `ngOnDestroy`.
 - Keep four compact counters in one row on mobile.
 - Keep counter boxes independent with no attached pseudo-element nodes.

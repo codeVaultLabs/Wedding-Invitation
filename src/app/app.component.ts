@@ -56,7 +56,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   }
 
   private updateCountdown(): void {
-    const target = new Date(2026, 10, 22).getTime();
+    const target = new Date(2026, 10, 22, 11, 45).getTime();
     const remaining = Math.max(0, target - Date.now());
     const totalSeconds = Math.floor(remaining / 1000);
     this.countdown = {
